@@ -53,22 +53,17 @@ const Department = ({ title }: DepartmentProps) => {
       title: () => {
         return <span className="text-sm">ID</span>;
       },
-      key: "id",
       dataIndex: "id",
     },
     {
       title: () => {
         return (
           <div className="flex flex-row items-center gap-2">
-            <SvgIcon
-              className="text-base"
-              component={AccountCircleOutlinedIcon}
-            />
+            <SvgIcon component={AccountCircleOutlinedIcon} />
             <span className="text-sm">Tên phòng ban</span>
           </div>
         );
       },
-      key: "Tên phòng ban",
       dataIndex: "namDepartment",
       render: (text, record) => gridNameDepartmentDot(text, record),
     },
@@ -77,10 +72,7 @@ const Department = ({ title }: DepartmentProps) => {
         return (
           <div className="flex flex-row items-center justify-between">
             <div className="flex flex-row items-center gap-2">
-              <SvgIcon
-                className="text-base"
-                component={AccountCircleOutlinedIcon}
-              />
+              <SvgIcon component={AccountCircleOutlinedIcon} />
               <span className="text-sm">Quản lý</span>
               <ArrowUpOutlined />
             </div>
@@ -98,7 +90,6 @@ const Department = ({ title }: DepartmentProps) => {
           </div>
         );
       },
-      key: "Quản lý",
       dataIndex: "nameManagement",
     },
     {
@@ -110,7 +101,6 @@ const Department = ({ title }: DepartmentProps) => {
           </div>
         );
       },
-      key: "Số nhân viên",
       dataIndex: "numberEmployee",
     },
     {
@@ -122,19 +112,17 @@ const Department = ({ title }: DepartmentProps) => {
           </div>
         );
       },
-      key: "Email quản lý",
       dataIndex: "email",
     },
     {
       title: () => {
         return (
           <div className="flex flex-row items-center gap-2">
-            <SvgIcon className="text-base" component={PhoneOutlinedIcon} />
+            <SvgIcon component={PhoneOutlinedIcon} />
             <span className="text-sm">Số điện thoại</span>
           </div>
         );
       },
-      key: "Số điện thoại",
       dataIndex: "phone",
     },
   ];
@@ -152,7 +140,7 @@ const Department = ({ title }: DepartmentProps) => {
       totalPage,
       pageSize,
     };
-  }, [department]);
+  }, []);
 
   return (
     <Wrapper title={title}>
@@ -190,10 +178,11 @@ const Department = ({ title }: DepartmentProps) => {
         <Table
           columns={columns}
           dataSource={department}
-          className="border mt-4"
+          className="border rounded mt-4"
           pagination={{
-            pageSize: handlePage().pageSize,
-            total: handlePage().totalPage,
+            pageSize: handlePage().totalPage,
+            defaultPageSize: handlePage().totalPage,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
           }}
         />
       </Content>

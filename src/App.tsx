@@ -30,14 +30,14 @@ const App: React.FC = () => {
             breakpoint="lg"
             collapsedWidth="0"
             width={310}
-            className="light-bg border-r border-t"
+            className="light-bg border-r border-t overflow-y-scroll"
             trigger={null}
             collapsible
           >
             <SideMenu />
           </Sider>
           <Layout>
-            <Content>
+            <Content style={{ background: "#fff" }}>
               <Router />
             </Content>
             <Footer style={{ textAlign: "center" }}>

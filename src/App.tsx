@@ -1,26 +1,53 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ToastContainer } from "react-toastify";
+import GlobalStyle from "./GlobalStyle/GlobalStyle";
 
-function App() {
+import React from "react";
+
+import { Layout } from "antd";
+
+import { SideMenu, Wrapper } from "./components";
+import Router from "./routes/Router";
+
+const { Content, Footer, Sider } = Layout;
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper title="Main App">
+      <GlobalStyle>
+        <ToastContainer
+          position="bottom-left"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Layout>
+          <Sider
+            breakpoint="lg"
+            collapsedWidth="0"
+            width={310}
+            className="light-bg border-r border-t"
+            trigger={null}
+            collapsible
+          >
+            <SideMenu />
+          </Sider>
+          <Layout>
+            <Content>
+              <Router />
+            </Content>
+            <Footer style={{ textAlign: "center" }}>
+              Task1 ©2023 Allright by LeChiHai
+            </Footer>
+          </Layout>
+        </Layout>
+      </GlobalStyle>
+    </Wrapper>
   );
-}
+};
 
 export default App;

@@ -7,6 +7,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import { SvgIcon } from "@mui/material";
@@ -48,11 +49,11 @@ const gridActive = (record: EmployeeType) => {
       <div className="flex flex-row items-center gap-2">
         {record.active ? (
           <div>
-            <UserOutlined style={{ color: "blue" }} />
+            <SvgIcon component={AccountCircleIcon} style={{ color: "blue" }} />
           </div>
         ) : (
           <div>
-            <UserOutlined />
+            <SvgIcon component={AccountCircleIcon} />
           </div>
         )}
       </div>

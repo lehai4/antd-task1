@@ -1,5 +1,4 @@
 import {
-  ArrowUpOutlined,
   BorderlessTableOutlined,
   EllipsisOutlined,
   LogoutOutlined,
@@ -74,7 +73,6 @@ const Department = ({ title }: DepartmentProps) => {
             <div className="flex flex-row items-center gap-2">
               <SvgIcon component={AccountCircleOutlinedIcon} />
               <span className="text-sm">Quản lý</span>
-              <ArrowUpOutlined />
             </div>
             <MoreOutlined />
           </div>
@@ -178,7 +176,7 @@ const Department = ({ title }: DepartmentProps) => {
         <Table
           columns={columns}
           dataSource={department}
-          className="border rounded mt-4"
+          className="border shadow rounded mt-4"
           pagination={{
             pageSize: handlePage().totalPage,
             defaultPageSize: handlePage().totalPage,

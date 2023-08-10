@@ -1,12 +1,15 @@
 svg {
-  font-size: 20px !important;
+  font-size: 20px;
 }
 
+body {
+  min-height: 100vh;
+}
 ::-webkit-scrollbar {
   width: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(0, 0, 0, 0.05);
+  background-color: rgba(0, 0, 0, 0.3);
   border-radius: 40px;
 }
 ::-webkit-scrollbar-track {
@@ -14,3 +17,14 @@ svg {
 }
 
 /* color-picker style  */
+.scroll {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.scroll-bar {
+  inset: 0;
+  overflow: hidden scroll;
+  position: absolute;
+}

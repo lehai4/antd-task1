@@ -1,6 +1,7 @@
 import { Select } from "antd";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 import SvgIcon from "@mui/icons-material/ArrowDropDown";
+import type { SizeType } from "antd/es/config-provider/SizeContext";
 type optionProps = {
   value: string;
   label: string;

@@ -1,8 +1,8 @@
 import {
   FieldTimeOutlined,
   HomeOutlined,
-  MoneyCollectOutlined,
   MailOutlined,
+  MoneyCollectOutlined,
   ReconciliationOutlined,
   UserOutlined,
   UsergroupAddOutlined,
@@ -10,7 +10,7 @@ import {
 import type { MenuProps } from "antd";
 import { Image, Menu, Typography } from "antd";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const { Text } = Typography;
 type MenuItem = Required<MenuProps>["items"][number];
@@ -30,7 +30,6 @@ function getItem(
     type,
   } as MenuItem;
 }
-
 const items: MenuProps["items"] = [
   getItem(
     <h3 className="flex flex-rows items-center gap-3">
@@ -39,7 +38,7 @@ const items: MenuProps["items"] = [
     "/"
   ),
   getItem(
-    "NHÂN VIÊN",
+    <span className="text-slate-900 font-semibold">NHÂN VIÊN</span>,
     "employee",
     <></>,
     [
@@ -55,12 +54,11 @@ const items: MenuProps["items"] = [
         <UsergroupAddOutlined />
       ),
       getItem("Tạo Nhân Viên Mới", "/tao-nhan-vien-moi", <UserOutlined />),
-    ],
-    "group"
+    ]
   ),
 
   getItem(
-    "TĂNG CA",
+    <span className="text-slate-900 font-semibold">TĂNG CA</span>,
     "overtime",
     <></>,
     [
@@ -74,11 +72,10 @@ const items: MenuProps["items"] = [
         "/don-tang-ca-cua-toi",
         <FieldTimeOutlined />
       ),
-    ],
-    "group"
+    ]
   ),
   getItem(
-    "NGHỈ PHÉP",
+    <span className="text-slate-900 font-semibold">NGHỈ PHÉP</span>,
     "ON LEAVE",
     <></>,
     [
@@ -92,11 +89,10 @@ const items: MenuProps["items"] = [
         "/don-nghi-phep-cua-toi",
         <ReconciliationOutlined />
       ),
-    ],
-    "group"
+    ]
   ),
   getItem(
-    "ĐƠN KHÁC",
+    <span className="text-slate-900 font-semibold">ĐƠN KHÁC</span>,
     "OTHER FORM",
     <></>,
     [
@@ -106,48 +102,47 @@ const items: MenuProps["items"] = [
         "/danh-sach-don-cua-toi",
         <MailOutlined />
       ),
-    ],
-    "group"
+    ]
   ),
 
   getItem(
-    "QUẢN LÝ LƯƠNG",
+    <span className="text-slate-900 font-semibold">QUẢN LÝ LƯƠNG</span>,
     "manager-salary",
     <></>,
     [
       getItem("Lương Nhân Viên", "/luong-nhan-vien", <MoneyCollectOutlined />),
       getItem("Lương Của Tôi", "/luong-cua-toi", <MoneyCollectOutlined />),
-    ],
-    "group"
+    ]
   ),
   getItem(
-    "HỢP ĐỒNG",
+    <span className="text-slate-900 font-semibold">HỢP ĐỒNG</span>,
     "contract",
     <></>,
     [
       getItem("Hợp Đồng Nhân Viên", "/hop-dong-nhan-vien", <MailOutlined />),
       getItem("Hợp Đồng Của Tôi", "/hop-dong-cua-toi", <MailOutlined />),
-    ],
-    "group"
+    ]
   ),
 
   getItem(
-    "TUYỂN DỤNG",
-    "grp",
-    null,
-    [getItem("Danh sách ứng viên", "/tuyen-dung", <UsergroupAddOutlined />)],
-    "group"
+    <span className="text-slate-900 font-semibold">TUYỂN DỤNG</span>,
+    "hire",
+    <></>,
+    [getItem("Danh sách ứng viên", "/tuyen-dung", <UsergroupAddOutlined />)]
   ),
 ];
 
 const SideMenu = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<string>("Le Chi Hai");
+  const pathname = useLocation();
   return (
     <React.Fragment>
       <div
         className="flex items-center p-4 pl-6 bg-white"
-        style={{ gap: "20px" }}
+        style={{
+          gap: "20px",
+        }}
       >
         <Image
           style={{
@@ -162,12 +157,24 @@ const SideMenu = () => {
       </div>
       <Menu
         mode="inline"
-        defaultSelectedKeys={["/"]}
-        defaultOpenKeys={["/"]}
+        defaultSelectedKeys={[`${pathname.pathname}`]}
+        defaultOpenKeys={[
+          "employee",
+          "overtime",
+          "ON LEAVE",
+          "OTHER FORM",
+          "manager-salary",
+          "contract",
+          "hire",
+        ]}
         onClick={(item) => {
           navigate(item.key);
         }}
-        style={{ height: "100%", borderRight: 0 }}
+        style={{
+          maxHeight: "100vh",
+          overflowY: "scroll",
+          borderRight: 0,
+        }}
         items={items}
       />
     </React.Fragment>

@@ -25,7 +25,7 @@ type DepartmentProps = {
 const gridNameDepartmentDot = (text: string, record: any) => {
   return (
     <>
-      <div className="flex flex-row items-center gap-2">
+      <div className="w-max flex flex-row items-center gap-2">
         <div
           style={{
             backgroundColor: record.color,
@@ -57,7 +57,7 @@ const Department = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div className="flex flex-row items-center gap-2">
+          <div className="w-max flex flex-row items-center gap-2">
             <SvgIcon component={AccountCircleOutlinedIcon} />
             <span className="text-sm">Tên phòng ban</span>
           </div>
@@ -80,7 +80,7 @@ const Department = ({ title }: DepartmentProps) => {
       },
       render: (text, record) => {
         return (
-          <div className="flex flex-row items-center gap-2">
+          <div className="w-max flex flex-row items-center gap-2">
             {record.image !== "" && (
               <img src={record.image} style={{ borderRadius: "50%" }} alt="" />
             )}
@@ -93,7 +93,7 @@ const Department = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div className="flex flex-row items-center gap-2">
+          <div className="w-max flex flex-row items-center gap-2">
             <BorderlessTableOutlined />
             <span className="text-sm">Số nhân viên</span>
           </div>
@@ -104,7 +104,7 @@ const Department = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div className="flex flex-row items-center gap-2">
+          <div className="w-max flex flex-row items-center gap-2">
             <SvgIcon component={HorizontalSplitIcon} />
             <span className="text-sm">Email quản lý</span>
           </div>
@@ -115,7 +115,7 @@ const Department = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div className="flex flex-row items-center gap-2">
+          <div className="w-max flex flex-row items-center gap-2">
             <SvgIcon component={PhoneOutlinedIcon} />
             <span className="text-sm">Số điện thoại</span>
           </div>
@@ -177,6 +177,8 @@ const Department = ({ title }: DepartmentProps) => {
           columns={columns}
           dataSource={department}
           className="border shadow rounded mt-4"
+          scroll={{ x: true }}
+          loading={department.length == 0 ? true : false}
           pagination={{
             pageSize: handlePage().totalPage,
             defaultPageSize: handlePage().totalPage,

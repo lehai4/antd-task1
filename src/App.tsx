@@ -30,7 +30,7 @@ const App: React.FC = () => {
             breakpoint="lg"
             collapsedWidth="0"
             width={310}
-            className="light-bg border-r border-t overflow-y-scroll"
+            className="border-r border-t"
             trigger={null}
             collapsible
           >

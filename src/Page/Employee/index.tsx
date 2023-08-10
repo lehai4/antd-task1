@@ -26,7 +26,7 @@ type DepartmentProps = {
 const gridNameEmployeeDot = (text: string, record: any) => {
   return (
     <>
-      <div className="flex flex-row items-center gap-2">
+      <div className="w-max flex flex-row items-center gap-2">
         <div
           style={{
             backgroundColor: record.color,
@@ -81,6 +81,7 @@ const Employee = ({ title }: DepartmentProps) => {
 
   const [employeeArr, setEmployeeArr] = useState<EmployeeType[]>([]);
   const [employeeArrOrgin, setEmployeeArrOrgin] = useState<EmployeeType[]>([]);
+
   const columns: ColumnsType<EmployeeType> = [
     {
       render: () => <EllipsisOutlined />,
@@ -99,10 +100,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "14rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <SvgIcon component={HorizontalSplitIcon} />
             <span className="text-sm">Tên nhân viên</span>
           </div>
@@ -111,7 +109,7 @@ const Employee = ({ title }: DepartmentProps) => {
       dataIndex: "nameEmployee",
       render: (text, record) => {
         return (
-          <div className="flex flex-row flex-nowrap items-center gap-2">
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             {record.image !== "" && (
               <img src={record.image} style={{ borderRadius: "50%" }} alt="" />
             )}
@@ -123,10 +121,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "12rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <BarsOutlined />
             <span className="text-sm">Phòng ban</span>
           </div>
@@ -138,10 +133,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "9rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <SvgIcon component={PhoneOutlinedIcon} />
             <span className="text-sm">Số điện thoại</span>
           </div>
@@ -152,10 +144,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "8rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <BarsOutlined />
             <span className="text-sm">Giới tính</span>
           </div>
@@ -167,10 +156,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "10rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <SvgIcon component={HorizontalSplitIcon} />
             <span className="text-sm">Email</span>
           </div>
@@ -181,10 +167,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "8rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <SvgIcon component={HorizontalSplitIcon} />
             <span className="text-sm">Ngân Hàng</span>
           </div>
@@ -195,10 +178,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "18rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <SvgIcon component={ContactMailIcon} />
             <span className="text-sm">Địa chỉ</span>
           </div>
@@ -209,10 +189,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "10rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <SvgIcon component={HorizontalSplitIcon} />
             <span className="text-sm">Quốc gia</span>
           </div>
@@ -223,10 +200,7 @@ const Employee = ({ title }: DepartmentProps) => {
     {
       title: () => {
         return (
-          <div
-            className="flex flex-row flex-nowrap items-center gap-2"
-            style={{ minWidth: "10rem" }}
-          >
+          <div className="w-max flex flex-row flex-nowrap items-center gap-2">
             <BorderlessTableOutlined />
             <span className="text-sm flex">TK Ngân Hàng</span>
           </div>
@@ -263,7 +237,7 @@ const Employee = ({ title }: DepartmentProps) => {
     setTimeout(() => {
       setEmployeeArr(employee);
       setEmployeeArrOrgin(employee);
-    }, 5000);
+    }, 1000);
   }, []);
 
   useEffect(() => {
@@ -326,9 +300,7 @@ const Employee = ({ title }: DepartmentProps) => {
                 };
               })}
               selected={selected}
-              styles={{
-                fontSize: 15,
-              }}
+              styles={{ width: 180 }}
               handleChange={handleChange}
             />
             <Button

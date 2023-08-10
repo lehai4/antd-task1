@@ -171,8 +171,7 @@ const SideMenu = () => {
           navigate(item.key);
         }}
         style={{
-          maxHeight: "100vh",
-          overflowY: "scroll",
+          background: "#FFFFFF",
           borderRight: 0,
         }}
         items={items}

@@ -25,24 +25,31 @@ const App: React.FC = () => {
           draggable
           pauseOnHover
         />
-        <Layout>
+
+        <Layout hasSider>
           <Sider
-            breakpoint="lg"
-            collapsedWidth="0"
             width={310}
             className="border-r border-t"
-            trigger={null}
-            collapsible
+            style={{
+              overflow: "auto",
+              height: "100vh",
+              position: "fixed",
+              left: 0,
+              top: 0,
+              bottom: 0,
+            }}
           >
             <SideMenu />
           </Sider>
-          <Layout>
-            <Content style={{ background: "#fff" }}>
-              <Router />
+          <Layout style={{ marginLeft: 310 }}>
+            <Content style={{ overflow: "initial" }}>
+              <div>
+                <Router />
+              </div>
             </Content>
-            <Footer style={{ textAlign: "center" }}>
+            {/* <Footer style={{ textAlign: "center" }}>
               Task1 ©2023 Allright by LeChiHai
-            </Footer>
+            </Footer> */}
           </Layout>
         </Layout>
       </GlobalStyle>

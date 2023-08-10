@@ -17,14 +17,7 @@ body {
 }
 
 /* color-picker style  */
-.scroll {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-}
-.scroll-bar {
-  inset: 0;
-  overflow: hidden scroll;
-  position: absolute;
+
+.ant-menu-sub {
+  background-color: #fff !important;
 }

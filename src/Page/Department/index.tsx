@@ -9,11 +9,12 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import { SvgIcon } from "@mui/material";
-import { Button, Divider, Table, Typography, theme } from "antd";
+import { Button, Divider, Table, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { ColumnsType } from "antd/es/table/interface";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
 import { toast } from "react-toastify";
+import { DefaultContext } from "../../Context/ContextProvider";
 import { Wrapper } from "../../components";
 import department from "../../dummyData/department";
 import { DataType } from "../../typeProps";
@@ -41,9 +42,8 @@ const gridNameDepartmentDot = (text: string, record: any) => {
 };
 
 const Department = ({ title }: DepartmentProps) => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const theme = useContext(DefaultContext);
+
   const columns: ColumnsType<DataType> = [
     {
       render: () => <EllipsisOutlined style={{ fontSize: 20 }} />,
@@ -149,7 +149,7 @@ const Department = ({ title }: DepartmentProps) => {
           height: 50,
           paddingLeft: 36,
           paddingRight: 42,
-          background: colorBgContainer,
+          background: theme.bgColor,
         }}
       >
         <Text strong className="text-lg capitalize">

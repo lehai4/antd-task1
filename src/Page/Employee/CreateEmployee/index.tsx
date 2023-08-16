@@ -4,11 +4,12 @@ import { StepForm, Wrapper } from "../../../components";
 
 import { LogoutOutlined } from "@ant-design/icons";
 import { Typography, theme } from "antd";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import AccountForm from "../../../components/Form/AccountForm";
 import InforForm from "../../../components/Form/InformationForm";
 import department from "../../../dummyData/department";
 import { accountFormProps, dataFormInfor } from "../../../typeProps";
+import { DefaultContext } from "../../../Context/ContextProvider";
 const { Text } = Typography;
 
 type CreateEmployeeProps = {
@@ -16,9 +17,7 @@ type CreateEmployeeProps = {
 };
 
 const CreateEmployee = ({ title }: CreateEmployeeProps) => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const theme = useContext(DefaultContext);
 
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [accountInfo, setAccountInfo] = useState<accountFormProps>();
@@ -50,7 +49,7 @@ const CreateEmployee = ({ title }: CreateEmployeeProps) => {
           height: 50,
           paddingLeft: 36,
           paddingRight: 42,
-          background: colorBgContainer,
+          background: theme.bgColor,
         }}
       >
         <Text strong className="text-lg capitalize">

@@ -12,11 +12,12 @@ import SvgIcon from "@mui/icons-material/ArrowDropDown";
 import { Space, Typography, theme } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import Table, { ColumnsType } from "antd/es/table";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { InputSearch, Wrapper } from "../../../components";
 import contractForEmployee from "../../../dummyData/contractForEmployee";
 import { ContractForEmployeeType } from "../../../typeProps";
 import { formatTimeStamp } from "../../../ultils/formatDate";
+import { DefaultContext } from "../../../Context/ContextProvider";
 const { Text } = Typography;
 type ContractForEmployeeProps = {
   title: string;
@@ -97,10 +98,7 @@ const gridNote = (row: string) => {
 };
 
 const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
-
+  const theme = useContext(DefaultContext);
   const [value, setValue] = useState<string>("");
   const [contract, setContract] = useState<ContractForEmployeeType[]>([]);
   const [contractOrgin, setContractOrgin] = useState<ContractForEmployeeType[]>(
@@ -324,7 +322,7 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
           height: 50,
           paddingLeft: 36,
           paddingRight: 42,
-          background: colorBgContainer,
+          background: theme.bgColor,
         }}
       >
         <Text strong className="text-lg capitalize">

@@ -10,11 +10,12 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import { SvgIcon } from "@mui/material";
-import { Button, Space, Table, Typography, theme } from "antd";
+import { Button, Space, Table, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { ColumnsType } from "antd/es/table/interface";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { DefaultContext } from "../../../Context/ContextProvider";
 import { InputSearch, SelectForm, Wrapper } from "../../../components";
 import employee from "../../../dummyData/employee";
 import { EmployeeType } from "../../../typeProps";
@@ -58,6 +59,7 @@ const gridActive = (record: EmployeeType) => {
     </>
   );
 };
+
 const gridSex = (record: string) => (
   <span
     className="font-semibold p-1 pl-2 pr-2 rounded-md"
@@ -72,9 +74,7 @@ const gridSex = (record: string) => (
 );
 
 const Employee = ({ title }: EmployeeProps) => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const theme = useContext(DefaultContext);
 
   const [selected, setSelected] = useState<string>("Toàn bộ phòng ban");
   const [value, setValue] = useState<string>("");
@@ -260,6 +260,7 @@ const Employee = ({ title }: EmployeeProps) => {
         : filterResult;
     setEmployeeArr(filterResult);
   }, [value]);
+
   return (
     <Wrapper title={title}>
       <Header
@@ -269,7 +270,7 @@ const Employee = ({ title }: EmployeeProps) => {
           height: 50,
           paddingLeft: 36,
           paddingRight: 42,
-          background: colorBgContainer,
+          background: theme.bgColor,
         }}
       >
         <Text strong className="text-lg capitalize">

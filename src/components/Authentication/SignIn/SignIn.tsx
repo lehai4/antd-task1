@@ -2,6 +2,9 @@ import { Button, Form, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 import { signInUser } from "../../../redux/apiRequest";
 import { useAppDispatch } from "../../../hooks/hooks";
+import { Typography } from "antd";
+
+const { Link } = Typography;
 const SignIn = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -31,7 +34,10 @@ const SignIn = () => {
       >
         <Input size="large" placeholder="Nhập mật khẩu" />
       </Form.Item>
-      <Form.Item>
+      <Form.Item className="flex flex-row justify-end items-center ">
+        <Link href="/register" className="mr-4">
+          Chưa có tài khoản?
+        </Link>
         <Button
           type="primary"
           htmlType="submit"

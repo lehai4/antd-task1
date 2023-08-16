@@ -1,6 +1,8 @@
 import { LogoutOutlined } from "@ant-design/icons";
-import { Space, Typography, theme } from "antd";
+import { Space, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
+import { useContext } from "react";
+import { DefaultContext } from "../../../Context/ContextProvider";
 import { Wrapper } from "../../../components";
 import employee from "../../../dummyData/employee";
 const { Text } = Typography;
@@ -8,9 +10,7 @@ type ContractForMeProps = {
   title: string;
 };
 const ContractForMe = ({ title }: ContractForMeProps) => {
-  const {
-    token: { colorBgContainer },
-  } = theme.useToken();
+  const theme = useContext(DefaultContext);
 
   return (
     <Wrapper title={title}>
@@ -21,7 +21,7 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
           height: 50,
           paddingLeft: 36,
           paddingRight: 42,
-          background: colorBgContainer,
+          background: theme.bgColor,
         }}
       >
         <Text strong className="text-lg capitalize">

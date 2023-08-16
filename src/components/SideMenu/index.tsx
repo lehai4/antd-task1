@@ -33,7 +33,7 @@ function getItem(
 const items: MenuProps["items"] = [
   getItem(
     <h3 className="flex flex-rows items-center gap-3">
-      <HomeOutlined /> Dashboard
+      <HomeOutlined style={{ fontSize: 20 }} /> Dashboard
     </h3>,
     "/"
   ),
@@ -42,18 +42,26 @@ const items: MenuProps["items"] = [
     "employee",
     <></>,
     [
-      getItem("Phòng Ban", "/phong-ban", <UsergroupAddOutlined />),
+      getItem(
+        "Phòng Ban",
+        "/phong-ban",
+        <UsergroupAddOutlined style={{ fontSize: 20 }} />
+      ),
       getItem(
         "Phòng Ban Của Tôi",
         "/phong-ban-cua-toi",
-        <UsergroupAddOutlined />
+        <UsergroupAddOutlined style={{ fontSize: 20 }} />
       ),
       getItem(
         "Toàn Bộ Nhân Viên",
         "/toan-bo-nhan-vien",
-        <UsergroupAddOutlined />
+        <UsergroupAddOutlined style={{ fontSize: 20 }} />
       ),
-      getItem("Tạo Nhân Viên Mới", "/tao-nhan-vien-moi", <UserOutlined />),
+      getItem(
+        "Tạo Nhân Viên Mới",
+        "/tao-nhan-vien-moi",
+        <UserOutlined style={{ fontSize: 20 }} />
+      ),
     ]
   ),
 
@@ -65,12 +73,12 @@ const items: MenuProps["items"] = [
       getItem(
         "Đơn Tăng Ca Nhân Viên",
         "/don-tang-ca-nhan-vien",
-        <FieldTimeOutlined />
+        <FieldTimeOutlined style={{ fontSize: 20 }} />
       ),
       getItem(
         "Đơn Tăng Ca Của Tôi",
         "/don-tang-ca-cua-toi",
-        <FieldTimeOutlined />
+        <FieldTimeOutlined style={{ fontSize: 20 }} />
       ),
     ]
   ),
@@ -82,12 +90,12 @@ const items: MenuProps["items"] = [
       getItem(
         "Đơn Nghỉ Phép Nhân Viên",
         "/don-nghi-phep-nhan-vien",
-        <ReconciliationOutlined />
+        <ReconciliationOutlined style={{ fontSize: 20 }} />
       ),
       getItem(
         "Đơn Nghỉ Phép Của Tôi",
         "/don-nghi-phep-cua-toi",
-        <ReconciliationOutlined />
+        <ReconciliationOutlined style={{ fontSize: 20 }} />
       ),
     ]
   ),
@@ -96,11 +104,15 @@ const items: MenuProps["items"] = [
     "OTHER FORM",
     <></>,
     [
-      getItem("Danh Sách Đơn Khác", "/danh-sach-don-khac", <MailOutlined />),
+      getItem(
+        "Danh Sách Đơn Khác",
+        "/danh-sach-don-khac",
+        <MailOutlined style={{ fontSize: 20 }} />
+      ),
       getItem(
         "Danh Sách Đơn Của Tôi",
         "/danh-sach-don-cua-toi",
-        <MailOutlined />
+        <MailOutlined style={{ fontSize: 20 }} />
       ),
     ]
   ),
@@ -110,8 +122,16 @@ const items: MenuProps["items"] = [
     "manager-salary",
     <></>,
     [
-      getItem("Lương Nhân Viên", "/luong-nhan-vien", <MoneyCollectOutlined />),
-      getItem("Lương Của Tôi", "/luong-cua-toi", <MoneyCollectOutlined />),
+      getItem(
+        "Lương Nhân Viên",
+        "/luong-nhan-vien",
+        <MoneyCollectOutlined style={{ fontSize: 20 }} />
+      ),
+      getItem(
+        "Lương Của Tôi",
+        "/luong-cua-toi",
+        <MoneyCollectOutlined style={{ fontSize: 20 }} />
+      ),
     ]
   ),
   getItem(
@@ -119,8 +139,16 @@ const items: MenuProps["items"] = [
     "contract",
     <></>,
     [
-      getItem("Hợp Đồng Nhân Viên", "/hop-dong-nhan-vien", <MailOutlined />),
-      getItem("Hợp Đồng Của Tôi", "/hop-dong-cua-toi", <MailOutlined />),
+      getItem(
+        "Hợp Đồng Nhân Viên",
+        "/hop-dong-nhan-vien",
+        <MailOutlined style={{ fontSize: 20 }} />
+      ),
+      getItem(
+        "Hợp Đồng Của Tôi",
+        "/hop-dong-cua-toi",
+        <MailOutlined style={{ fontSize: 20 }} />
+      ),
     ]
   ),
 
@@ -128,7 +156,13 @@ const items: MenuProps["items"] = [
     <span className="text-slate-900 font-semibold">TUYỂN DỤNG</span>,
     "hire",
     <></>,
-    [getItem("Danh sách ứng viên", "/tuyen-dung", <UsergroupAddOutlined />)]
+    [
+      getItem(
+        "Danh sách ứng viên",
+        "/tuyen-dung",
+        <UsergroupAddOutlined style={{ fontSize: 20 }} />
+      ),
+    ]
   ),
 ];
 
@@ -173,6 +207,9 @@ const SideMenu = () => {
         style={{
           background: "#FFFFFF",
           borderRight: 0,
+          overflow: "auto",
+          height: "inherit",
+          paddingBottom: 100,
         }}
         items={items}
       />

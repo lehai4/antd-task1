@@ -1,6 +1,6 @@
-svg {
+/*svg {
   font-size: 20px;
-}
+}*/
 
 body {
   min-height: 100vh;
@@ -9,7 +9,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 40px;
 }
 ::-webkit-scrollbar-track {
@@ -20,4 +20,9 @@ body {
 
 .ant-menu-sub {
   background-color: #fff !important;
+}
+
+.authentication-img {
+  width: 848px;
+  max-width: 848px;
 }

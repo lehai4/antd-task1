@@ -46,7 +46,7 @@ const Department = ({ title }: DepartmentProps) => {
   } = theme.useToken();
   const columns: ColumnsType<DataType> = [
     {
-      render: () => <EllipsisOutlined />,
+      render: () => <EllipsisOutlined style={{ fontSize: 20 }} />,
     },
     {
       title: () => {
@@ -74,7 +74,7 @@ const Department = ({ title }: DepartmentProps) => {
               <SvgIcon component={AccountCircleOutlinedIcon} />
               <span className="text-sm">Quản lý</span>
             </div>
-            <MoreOutlined />
+            <MoreOutlined style={{ fontSize: 20 }} />
           </div>
         );
       },
@@ -94,7 +94,7 @@ const Department = ({ title }: DepartmentProps) => {
       title: () => {
         return (
           <div className="w-max flex flex-row items-center gap-2">
-            <BorderlessTableOutlined />
+            <BorderlessTableOutlined style={{ fontSize: 20 }} />
             <span className="text-sm">Số nhân viên</span>
           </div>
         );
@@ -152,10 +152,19 @@ const Department = ({ title }: DepartmentProps) => {
           background: colorBgContainer,
         }}
       >
-        <Text strong className="text-lg">
+        <Text strong className="text-lg capitalize">
           {title}
         </Text>
-        <LogoutOutlined style={{ fontSize: "28px" }} />
+        <LogoutOutlined
+          style={{
+            fontSize: "28px",
+            color: "blue",
+            padding: 5,
+            border: "1px solid rgba(0,0,0,0.05)",
+            borderRadius: 6,
+            backgroundColor: "rgba(255,255,255,254)",
+          }}
+        />
       </Header>
       <Content
         className="bg-white pt-10 pb-2"
@@ -164,7 +173,7 @@ const Department = ({ title }: DepartmentProps) => {
         <Button
           type="primary"
           size={"large"}
-          icon={<PlusOutlined />}
+          icon={<PlusOutlined style={{ fontSize: 18 }} />}
           style={{ marginBottom: 6 }}
           className="flex float-right items-center bg-blue-500 text-white"
           onClick={handleAdd}

@@ -1,11 +1,15 @@
 import { Input } from "antd";
 
-type InputFormProps = {
+type InputSearchProps = {
   placeholder: string;
   value: string;
   handleChange: (value: any) => void;
 };
-const InputForm = ({ placeholder, value, handleChange }: InputFormProps) => {
+const InputSearch = ({
+  placeholder,
+  value,
+  handleChange,
+}: InputSearchProps) => {
   return (
     <Input
       placeholder={placeholder}
@@ -23,4 +27,4 @@ const InputForm = ({ placeholder, value, handleChange }: InputFormProps) => {
   );
 };
 
-export default InputForm;
+export default InputSearch;

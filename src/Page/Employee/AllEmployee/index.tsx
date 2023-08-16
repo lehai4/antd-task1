@@ -15,11 +15,11 @@ import { Content, Header } from "antd/es/layout/layout";
 import { ColumnsType } from "antd/es/table/interface";
 import { useCallback, useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { InputForm, SelectForm, Wrapper } from "../../components";
-import employee from "../../dummyData/employee";
-import { EmployeeType } from "../../typeProps";
+import { InputSearch, SelectForm, Wrapper } from "../../../components";
+import employee from "../../../dummyData/employee";
+import { EmployeeType } from "../../../typeProps";
 const { Text } = Typography;
-type DepartmentProps = {
+type EmployeeProps = {
   title: string;
 };
 
@@ -71,7 +71,7 @@ const gridSex = (record: string) => (
   </span>
 );
 
-const Employee = ({ title }: DepartmentProps) => {
+const Employee = ({ title }: EmployeeProps) => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -84,7 +84,7 @@ const Employee = ({ title }: DepartmentProps) => {
 
   const columns: ColumnsType<EmployeeType> = [
     {
-      render: () => <EllipsisOutlined />,
+      render: () => <EllipsisOutlined style={{ fontSize: 20 }} />,
     },
     { width: 40, render: (record) => gridActive(record) },
     {
@@ -122,7 +122,7 @@ const Employee = ({ title }: DepartmentProps) => {
       title: () => {
         return (
           <div className="w-max flex flex-row flex-nowrap items-center gap-2">
-            <BarsOutlined />
+            <BarsOutlined style={{ fontSize: 20 }} />
             <span className="text-sm">Phòng ban</span>
           </div>
         );
@@ -145,7 +145,7 @@ const Employee = ({ title }: DepartmentProps) => {
       title: () => {
         return (
           <div className="w-max flex flex-row flex-nowrap items-center gap-2">
-            <BarsOutlined />
+            <BarsOutlined style={{ fontSize: 20 }} />
             <span className="text-sm">Giới tính</span>
           </div>
         );
@@ -201,7 +201,7 @@ const Employee = ({ title }: DepartmentProps) => {
       title: () => {
         return (
           <div className="w-max flex flex-row flex-nowrap items-center gap-2">
-            <BorderlessTableOutlined />
+            <BorderlessTableOutlined style={{ fontSize: 20 }} />
             <span className="text-sm flex">TK Ngân Hàng</span>
           </div>
         );
@@ -237,7 +237,7 @@ const Employee = ({ title }: DepartmentProps) => {
     setTimeout(() => {
       setEmployeeArr(employee);
       setEmployeeArrOrgin(employee);
-    }, 1000);
+    }, 2000);
   }, []);
 
   useEffect(() => {
@@ -272,10 +272,19 @@ const Employee = ({ title }: DepartmentProps) => {
           background: colorBgContainer,
         }}
       >
-        <Text strong className="text-lg">
+        <Text strong className="text-lg capitalize">
           {title}
         </Text>
-        <LogoutOutlined style={{ fontSize: "28px" }} />
+        <LogoutOutlined
+          style={{
+            fontSize: "28px",
+            color: "blue",
+            padding: 5,
+            border: "1px solid rgba(0,0,0,0.05)",
+            borderRadius: 6,
+            backgroundColor: "rgba(255,255,255,254)",
+          }}
+        />
       </Header>
       <Content
         className="bg-white pt-10 pb-2"
@@ -285,7 +294,7 @@ const Employee = ({ title }: DepartmentProps) => {
           className="border shadow rounded justify-between flex pr-6 pl-4"
           style={{ height: 90 }}
         >
-          <InputForm
+          <InputSearch
             value={value}
             handleChange={(e) => setValue(e.target.value)}
             placeholder="Tìm kiếm"
@@ -314,7 +323,7 @@ const Employee = ({ title }: DepartmentProps) => {
           <Button
             type="primary"
             size={"large"}
-            icon={<PlusOutlined />}
+            icon={<PlusOutlined style={{ fontSize: 18 }} />}
             className="flex float-right items-center bg-blue-500 text-white"
             onClick={handleAdd}
           >

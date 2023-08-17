@@ -5,22 +5,32 @@ import { useContext } from "react";
 import { DefaultContext } from "../../../Context/ContextProvider";
 import { Wrapper } from "../../../components";
 import employee from "../../../dummyData/employee";
+import { LogOutUser } from "../../../redux/apiRequest";
+import { useAppDispatch } from "../../../hooks/hooks";
+import { useNavigate } from "react-router-dom";
 const { Text } = Typography;
 type ContractForMeProps = {
   title: string;
 };
 const ContractForMe = ({ title }: ContractForMeProps) => {
   const theme = useContext(DefaultContext);
-
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const handleLogOut = () => {
+    LogOutUser(dispatch, navigate);
+  };
   return (
     <Wrapper title={title}>
       <Header
-        className="border flex flex-row justify-between items-center"
+        className="border flex flex-row justify-between items-center w-full"
         style={{
           padding: 0,
-          height: 50,
+          width: "calc(100% - 310px)",
+          position: "fixed",
           paddingLeft: 36,
           paddingRight: 42,
+          zIndex: 999,
+          height: 50,
           background: theme.bgColor,
         }}
       >
@@ -28,6 +38,7 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
           {title}
         </Text>
         <LogoutOutlined
+          onClick={handleLogOut}
           style={{
             fontSize: "28px",
             color: "blue",
@@ -39,15 +50,24 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
         />
       </Header>
       <Content
-        className="bg-white pt-10 pb-2"
+        className="bg-white pt-12 pb-2"
         style={{ paddingLeft: 36, paddingRight: 42 }}
       >
-        <Space style={{ margin: "0 auto", width: 1350, display: "block" }}>
-          <h3 className="font-semibold text-3xl">Thông tin hợp đồng</h3>
+        <Space
+          style={{
+            margin: "0 auto",
+            paddingTop: 38,
+            width: 1350,
+            display: "block",
+          }}
+        >
+          <h3 className="font-bold uppercase text-3xl text-center">
+            Thông tin hợp đồng
+          </h3>
           <div className="px-20">
             <div className="mt-10">
               <div>
-                <h3 className="font-normal text-3xl mb-5 text-blue-600">
+                <h3 className="font-medium text-3xl mb-5 text-blue-600">
                   Thông tin người lao động
                 </h3>
                 <div className="flex flex-col px-8 gap-y-3">
@@ -99,12 +119,12 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                   </div>
                 </div>
               </div>
-              <div>
-                <h3 className="my-3 font-normal text-3xl text-blue-600">
+              <div className="pb-8">
+                <h3 className="mt-3 mb-2 font-medium text-3xl text-blue-600">
                   Hợp đồng lao động
                 </h3>
                 <div className="flex flex-col">
-                  <span className="my-3 text-blue-500 text-lg">
+                  <span className="my-3 font-medium text-blue-500 text-lg">
                     1. Công việc, phòng ban và thời hạn hợp đồng
                   </span>
                   <div className="px-8 flex flex-col gap-y-3">
@@ -120,7 +140,7 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       </Text>
                       <span className="ml-2">Hợp đồng xác định thời hạn</span>
                     </div>
-                    <div className=" relative flex flex-row items-center">
+                    <div className="relative flex flex-row items-center">
                       <div className="flex flex-1 items-center gap-20 text-base">
                         <Text strong className="text-base">
                           Từ ngày:
@@ -139,11 +159,11 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                     </div>
                   </div>
 
-                  <span className="my-3 text-blue-500 text-lg">
+                  <span className="my-3 font-medium text-blue-500 text-lg">
                     2. Lương, phụ cấp và các khoản bổ sung khác
                   </span>
                   <div className="px-8 flex flex-col gap-y-3">
-                    <div className=" relative flex flex-row items-center">
+                    <div className="relative flex flex-row items-center">
                       <div className="flex flex-1 items-center gap-20 text-base">
                         <Text strong className="text-base">
                           Lương căn bản:

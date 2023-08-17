@@ -3,13 +3,16 @@ import { Content, Header } from "antd/es/layout/layout";
 import { StepForm, Wrapper } from "../../../components";
 
 import { LogoutOutlined } from "@ant-design/icons";
-import { Typography, theme } from "antd";
+import { Typography } from "antd";
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { DefaultContext } from "../../../Context/ContextProvider";
 import AccountForm from "../../../components/Form/AccountForm";
 import InforForm from "../../../components/Form/InformationForm";
 import department from "../../../dummyData/department";
+import { useAppDispatch } from "../../../hooks/hooks";
+import { LogOutUser } from "../../../redux/apiRequest";
 import { accountFormProps, dataFormInfor } from "../../../typeProps";
-import { DefaultContext } from "../../../Context/ContextProvider";
 const { Text } = Typography;
 
 type CreateEmployeeProps = {
@@ -18,6 +21,8 @@ type CreateEmployeeProps = {
 
 const CreateEmployee = ({ title }: CreateEmployeeProps) => {
   const theme = useContext(DefaultContext);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [currentStep, setCurrentStep] = useState<number>(0);
   const [accountInfo, setAccountInfo] = useState<accountFormProps>();
@@ -40,15 +45,21 @@ const CreateEmployee = ({ title }: CreateEmployeeProps) => {
     />,
   ];
 
+  const handleLogOut = () => {
+    LogOutUser(dispatch, navigate);
+  };
   return (
     <Wrapper title={title}>
       <Header
-        className="border flex flex-row justify-between items-center"
+        className="border flex flex-row justify-between items-center w-full"
         style={{
           padding: 0,
-          height: 50,
+          width: "calc(100% - 310px)",
+          position: "fixed",
           paddingLeft: 36,
           paddingRight: 42,
+          zIndex: 999,
+          height: 50,
           background: theme.bgColor,
         }}
       >
@@ -56,6 +67,7 @@ const CreateEmployee = ({ title }: CreateEmployeeProps) => {
           {title}
         </Text>
         <LogoutOutlined
+          onClick={handleLogOut}
           style={{
             fontSize: "28px",
             color: "blue",
@@ -68,9 +80,16 @@ const CreateEmployee = ({ title }: CreateEmployeeProps) => {
       </Header>
       <Content
         className="bg-white pt-10 pb-2"
-        style={{ paddingLeft: 36, paddingRight: 42 }}
+        style={{ paddingLeft: 36, paddingTop: 50, paddingRight: 42 }}
       >
-        <Space style={{ margin: "0 auto", width: 1250, display: "block" }}>
+        <Space
+          style={{
+            margin: "0 auto",
+            paddingTop: 38,
+            width: 1250,
+            display: "block",
+          }}
+        >
           <StepForm
             titleStart="Tạo tài khoản"
             titleEnd="Thông tin cá nhân"

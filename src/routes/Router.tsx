@@ -16,9 +16,10 @@ const Router: React.FunctionComponent<IRouterProps> = () => {
     <Routes>
       <Route
         path="/"
-        element={!user ? <Navigate to="/auth" /> : <Navigate to="/dashboard" />}
+        element={
+          !user ? <Navigate to="/auth" /> : <Dashboard title="Dashboard" />
+        }
       />
-      <Route path="/" element={<Dashboard />} />
 
       <Route path="/auth" element={<Authentication />}>
         <Route path=":slug" element={<Authentication />} />

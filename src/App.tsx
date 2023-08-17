@@ -44,9 +44,7 @@ const App: React.FC = () => {
             </Sider>
             <Layout style={{ marginLeft: 310 }}>
               <Content style={{ overflow: "initial" }}>
-                <div>
-                  <Router />
-                </div>
+                <Router />
               </Content>
               <Footer style={{ textAlign: "center" }}>
                 Task1 ©2023 Allright by LeChiHai

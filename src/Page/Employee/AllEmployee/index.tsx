@@ -13,12 +13,15 @@ import { SvgIcon } from "@mui/material";
 import { Button, Space, Table, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { ColumnsType } from "antd/es/table/interface";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { DefaultContext } from "../../../Context/ContextProvider";
 import { InputSearch, SelectForm, Wrapper } from "../../../components";
 import employee from "../../../dummyData/employee";
 import { EmployeeType } from "../../../typeProps";
+import { useAppDispatch } from "../../../hooks/hooks";
+import { useNavigate } from "react-router-dom";
+import { LogOutUser } from "../../../redux/apiRequest";
 const { Text } = Typography;
 type EmployeeProps = {
   title: string;
@@ -75,6 +78,8 @@ const gridSex = (record: string) => (
 
 const Employee = ({ title }: EmployeeProps) => {
   const theme = useContext(DefaultContext);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [selected, setSelected] = useState<string>("Toàn bộ phòng ban");
   const [value, setValue] = useState<string>("");
@@ -210,6 +215,10 @@ const Employee = ({ title }: EmployeeProps) => {
     },
   ];
 
+  const handleLogOut = () => {
+    LogOutUser(dispatch, navigate);
+  };
+
   const handleAdd = () => {
     toast.warning("Sorry, Temporarily close function");
   };
@@ -221,17 +230,6 @@ const Employee = ({ title }: EmployeeProps) => {
   const handleChange = (value: string) => {
     setSelected(value);
   };
-
-  const handlePage: any = useCallback(() => {
-    let totalPage,
-      pageSize = 0;
-    totalPage = employee.length;
-    pageSize = Math.round(totalPage / 2);
-    return {
-      totalPage,
-      pageSize,
-    };
-  }, []);
 
   useEffect(() => {
     setTimeout(() => {
@@ -277,6 +275,7 @@ const Employee = ({ title }: EmployeeProps) => {
           {title}
         </Text>
         <LogoutOutlined
+          onClick={handleLogOut}
           style={{
             fontSize: "28px",
             color: "blue",
@@ -338,8 +337,8 @@ const Employee = ({ title }: EmployeeProps) => {
           scroll={{ x: true }}
           loading={employeeArr.length == 0 ? true : false}
           pagination={{
-            pageSize: handlePage().totalPage,
-            defaultPageSize: handlePage().totalPage,
+            pageSize: 10,
+            defaultPageSize: 10,
             showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
           }}
         />

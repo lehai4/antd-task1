@@ -12,12 +12,15 @@ import { SvgIcon } from "@mui/material";
 import { Button, Divider, Table, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { ColumnsType } from "antd/es/table/interface";
-import { useCallback, useContext } from "react";
+import { useContext } from "react";
 import { toast } from "react-toastify";
 import { DefaultContext } from "../../Context/ContextProvider";
 import { Wrapper } from "../../components";
 import department from "../../dummyData/department";
 import { DataType } from "../../typeProps";
+import { LogOutUser } from "../../redux/apiRequest";
+import { useAppDispatch } from "../../hooks/hooks";
+import { useNavigate } from "react-router-dom";
 const { Text } = Typography;
 type DepartmentProps = {
   title: string;
@@ -44,6 +47,8 @@ const gridNameDepartmentDot = (text: string, record: any) => {
 const Department = ({ title }: DepartmentProps) => {
   const theme = useContext(DefaultContext);
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const columns: ColumnsType<DataType> = [
     {
       render: () => <EllipsisOutlined style={{ fontSize: 20 }} />,
@@ -129,17 +134,9 @@ const Department = ({ title }: DepartmentProps) => {
     toast.warning("Sorry, Temporarily close function");
   };
 
-  const handlePage: any = useCallback(() => {
-    let totalPage,
-      pageSize = 0;
-    totalPage = department.length;
-    pageSize = Math.round(totalPage / 2);
-    return {
-      totalPage,
-      pageSize,
-    };
-  }, []);
-
+  const handleLogOut = () => {
+    LogOutUser(dispatch, navigate);
+  };
   return (
     <Wrapper title={title}>
       <Header
@@ -156,6 +153,7 @@ const Department = ({ title }: DepartmentProps) => {
           {title}
         </Text>
         <LogoutOutlined
+          onClick={handleLogOut}
           style={{
             fontSize: "28px",
             color: "blue",
@@ -189,8 +187,7 @@ const Department = ({ title }: DepartmentProps) => {
           scroll={{ x: true }}
           loading={department.length == 0 ? true : false}
           pagination={{
-            pageSize: handlePage().totalPage,
-            defaultPageSize: handlePage().totalPage,
+            defaultPageSize: 10,
             showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
           }}
         />

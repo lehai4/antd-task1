@@ -1,4 +1,5 @@
 export { default as SideMenu } from "./SideMenu";
+export { default as Rectangle } from "./Rectangle";
 export { default as Wrapper } from "./Wrapper";
 export { default as SelectForm } from "./Form/SelectForm";
 export { default as StepForm } from "./Form/StepForm";

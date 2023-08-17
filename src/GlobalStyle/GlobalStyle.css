@@ -21,7 +21,10 @@ body {
 .ant-menu-sub {
   background-color: #fff !important;
 }
-
+.ant-form-item-required {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
 .authentication-img {
   width: 848px;
   max-width: 848px;

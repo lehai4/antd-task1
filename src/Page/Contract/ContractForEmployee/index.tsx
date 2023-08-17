@@ -18,6 +18,9 @@ import contractForEmployee from "../../../dummyData/contractForEmployee";
 import { ContractForEmployeeType } from "../../../typeProps";
 import { formatTimeStamp } from "../../../ultils/formatDate";
 import { DefaultContext } from "../../../Context/ContextProvider";
+import { useAppDispatch } from "../../../hooks/hooks";
+import { useNavigate } from "react-router-dom";
+import { LogOutUser } from "../../../redux/apiRequest";
 const { Text } = Typography;
 type ContractForEmployeeProps = {
   title: string;
@@ -99,6 +102,9 @@ const gridNote = (row: string) => {
 
 const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
   const theme = useContext(DefaultContext);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const [value, setValue] = useState<string>("");
   const [contract, setContract] = useState<ContractForEmployeeType[]>([]);
   const [contractOrgin, setContractOrgin] = useState<ContractForEmployeeType[]>(
@@ -306,6 +312,10 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
     },
   ];
 
+  const handleLogOut = () => {
+    LogOutUser(dispatch, navigate);
+  };
+
   useEffect(() => {
     setTimeout(() => {
       setContract(contractForEmployee);
@@ -316,12 +326,12 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
   return (
     <Wrapper title={title}>
       <Header
-        className="border flex flex-row justify-between items-center"
+        className="border flex flex-row justify-between items-center "
         style={{
           padding: 0,
-          height: 50,
           paddingLeft: 36,
           paddingRight: 42,
+          height: 50,
           background: theme.bgColor,
         }}
       >
@@ -329,6 +339,7 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
           {title}
         </Text>
         <LogoutOutlined
+          onClick={handleLogOut}
           style={{
             fontSize: "28px",
             color: "blue",
@@ -341,7 +352,7 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
       </Header>
       <Content
         className="bg-white pt-2 pb-2"
-        style={{ paddingLeft: 36, paddingRight: 42 }}
+        style={{ paddingLeft: 36, paddingTop: 58, paddingRight: 42 }}
       >
         <Space
           className="border shadow rounded justify-between flex pr-6 pl-4"
@@ -359,11 +370,11 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
           className="border shadow rounded mt-4"
           scroll={{ x: true }}
           loading={contract.length == 0 ? true : false}
-          // pagination={{
-          //   pageSize: handlePage().totalPage,
-          //   defaultPageSize: handlePage().totalPage,
-          //   showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
-          // }}
+          pagination={{
+            pageSize: 10,
+            defaultPageSize: 10,
+            showTotal: (total, range) => `${range[0]}-${range[1]} of ${total}`,
+          }}
         />
       </Content>
     </Wrapper>

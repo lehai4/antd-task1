@@ -91,7 +91,12 @@ const InforForm = ({ data, onFinish, setCurrentStep }: InforFormProps) => (
     </Form.Item>
 
     <div className="flex flex-row items-center justify-between gap-5">
-      <Form.Item name="department" label="Phòng ban" className="flex-1">
+      <Form.Item
+        name="department"
+        label="Phòng ban"
+        className="flex-1"
+        rules={[{ required: true }, { whitespace: true }]}
+      >
         <Select
           placeholder="Chọn phòng ban"
           size="large"

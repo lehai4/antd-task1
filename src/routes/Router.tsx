@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import {
   ContractForEmployee,
   ContractForMe,
+  CreateDepartment,
   CreateEmployee,
   Dashboard,
   Department,
@@ -29,6 +30,11 @@ const Router: React.FunctionComponent<IRouterProps> = () => {
         path="/phong-ban"
         element={<Department title="Danh sách phòng ban" />}
       />
+
+      <Route path="/phong-ban">
+        <Route path="them-phong-ban" element={<CreateDepartment />} />
+      </Route>
+
       <Route
         path="/toan-bo-nhan-vien"
         element={<Employee title="Danh sách nhân viên" />}

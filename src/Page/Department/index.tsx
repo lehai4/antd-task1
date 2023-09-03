@@ -9,18 +9,17 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import { SvgIcon } from "@mui/material";
-import { Button, Divider, Table, Typography } from "antd";
+import { Badge, Button, Divider, Table, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { ColumnsType } from "antd/es/table/interface";
 import { useContext } from "react";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { DefaultContext } from "../../Context/ContextProvider";
 import { Wrapper } from "../../components";
 import department from "../../dummyData/department";
-import { DataType } from "../../typeProps";
-import { LogOutUser } from "../../redux/apiRequest";
 import { useAppDispatch } from "../../hooks/hooks";
-import { useNavigate } from "react-router-dom";
+import { LogOutUser } from "../../redux/apiRequest";
+import { DataType } from "../../typeProps";
 const { Text } = Typography;
 type DepartmentProps = {
   title: string;
@@ -30,15 +29,8 @@ const gridNameDepartmentDot = (text: string, record: any) => {
   return (
     <>
       <div className="w-max flex flex-row items-center gap-2">
-        <div
-          style={{
-            backgroundColor: record.color,
-            minWidth: "8px",
-            height: "8px",
-            borderRadius: "50%",
-          }}
-        ></div>
-        <Text underline>{text}</Text>
+        <Badge color={record.color} />
+        <Text>{text}</Text>
       </div>
     </>
   );
@@ -131,7 +123,7 @@ const Department = ({ title }: DepartmentProps) => {
   ];
 
   const handleAdd = () => {
-    toast.warning("Sorry, Temporarily close function");
+    navigate("/phong-ban/them-phong-ban");
   };
 
   const handleLogOut = () => {

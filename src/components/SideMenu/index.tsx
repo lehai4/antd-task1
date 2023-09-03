@@ -82,6 +82,7 @@ const items: MenuProps["items"] = [
       ),
     ]
   ),
+
   getItem(
     <span className="text-slate-900 font-semibold">NGHỈ PHÉP</span>,
     "ON LEAVE",
@@ -99,6 +100,7 @@ const items: MenuProps["items"] = [
       ),
     ]
   ),
+
   getItem(
     <span className="text-slate-900 font-semibold">ĐƠN KHÁC</span>,
     "OTHER FORM",
@@ -134,6 +136,7 @@ const items: MenuProps["items"] = [
       ),
     ]
   ),
+
   getItem(
     <span className="text-slate-900 font-semibold">HỢP ĐỒNG</span>,
     "contract",
@@ -170,6 +173,16 @@ const SideMenu = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<string>("Le Chi Hai");
   const pathname = useLocation();
+
+  const convertPath = (path: string) => {
+    let key = path.indexOf("/");
+    let stringCut = path.slice(key + 1);
+
+    let restKey = stringCut.indexOf("/");
+
+    let pathname = path.slice(key, restKey !== -1 ? restKey + 1 : path.length);
+    return pathname;
+  };
   return (
     <React.Fragment>
       <div
@@ -191,7 +204,7 @@ const SideMenu = () => {
       </div>
       <Menu
         mode="inline"
-        defaultSelectedKeys={[`${pathname.pathname}`]}
+        defaultSelectedKeys={[`${convertPath(pathname.pathname)}`]}
         defaultOpenKeys={[
           "employee",
           "overtime",

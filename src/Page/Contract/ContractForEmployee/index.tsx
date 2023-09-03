@@ -1,50 +1,43 @@
 import {
   BarsOutlined,
   BorderlessTableOutlined,
+  CalendarOutlined,
   EllipsisOutlined,
   LogoutOutlined,
-  CalendarOutlined,
 } from "@ant-design/icons";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
 
 import SvgIcon from "@mui/icons-material/ArrowDropDown";
-import { Space, Typography, theme } from "antd";
+import { Badge, Space, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import Table, { ColumnsType } from "antd/es/table";
 import { useContext, useEffect, useState } from "react";
-import { InputSearch, Wrapper } from "../../../components";
-import contractForEmployee from "../../../dummyData/contractForEmployee";
-import { ContractForEmployeeType } from "../../../typeProps";
-import { formatTimeStamp } from "../../../ultils/formatDate";
-import { DefaultContext } from "../../../Context/ContextProvider";
-import { useAppDispatch } from "../../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
+import { DefaultContext } from "../../../Context/ContextProvider";
+import { InputSearch, Wrapper } from "../../../components";
+import contractArr from "../../../dummyData/dummy";
+import { useAppDispatch } from "../../../hooks/hooks";
 import { LogOutUser } from "../../../redux/apiRequest";
+import { ContractType } from "../../../typeProps";
+import { formatTimeStamp } from "../../../ultils/formatDate";
 const { Text } = Typography;
 type ContractForEmployeeProps = {
   title: string;
 };
 
-const gridTypeContract = (text: string, row: ContractForEmployeeType) => {
+const gridTypeContract = (text: string, row: ContractType) => {
   return (
     <>
       <div className="w-max flex flex-row items-center gap-2">
-        <div
-          style={{
-            backgroundColor: row.colorTypeDotContract,
-            minWidth: "8px",
-            height: "8px",
-            borderRadius: "50%",
-          }}
-        ></div>
-        <Text underline>{text}</Text>
+        <Badge color={row.colorTypeDotContract} />
+        <Text>{text}</Text>
       </div>
     </>
   );
 };
 
-const gridStatus = (row: ContractForEmployeeType) => {
+const gridStatus = (row: ContractType) => {
   return (
     <>
       {row ? (
@@ -67,7 +60,8 @@ const gridStatus = (row: ContractForEmployeeType) => {
     </>
   );
 };
-const gridSalary = (text: string, row: ContractForEmployeeType) => {
+
+const gridSalary = (text: string, row: ContractType) => {
   return (
     <>
       <div>
@@ -82,7 +76,7 @@ const gridSalary = (text: string, row: ContractForEmployeeType) => {
   );
 };
 
-const handleDate = (row: ContractForEmployeeType) => {
+const handleDate = (row: ContractType) => {
   return <span className="w-max flex">{formatTimeStamp(row)}</span>;
 };
 
@@ -106,13 +100,11 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
   const navigate = useNavigate();
 
   const [value, setValue] = useState<string>("");
-  const [contract, setContract] = useState<ContractForEmployeeType[]>([]);
-  const [contractOrgin, setContractOrgin] = useState<ContractForEmployeeType[]>(
-    []
-  );
+  const [contract, setContract] = useState<ContractType[]>([]);
+  const [contractOrgin, setContractOrgin] = useState<ContractType[]>([]);
 
   // columns
-  const columns: ColumnsType<ContractForEmployeeType> = [
+  const columns: ColumnsType<ContractType> = [
     {
       render: () => <EllipsisOutlined style={{ fontSize: 20 }} />,
     },
@@ -318,8 +310,8 @@ const ContractForEmployee = ({ title }: ContractForEmployeeProps) => {
 
   useEffect(() => {
     setTimeout(() => {
-      setContract(contractForEmployee);
-      setContractOrgin(contractForEmployee);
+      setContract(contractArr);
+      setContractOrgin(contractArr);
     }, 2000);
   }, []);
 

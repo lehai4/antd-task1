@@ -71,7 +71,7 @@ const InforForm = ({ data, onFinish, setCurrentStep }: InforFormProps) => (
         label="Ngày sinh"
         name="dob"
         className="flex-1"
-        rules={[{ required: true }]}
+        rules={[{ required: true }, { whitespace: true }]}
       >
         <DatePicker
           picker="date"
@@ -159,7 +159,6 @@ const InforForm = ({ data, onFinish, setCurrentStep }: InforFormProps) => (
           Quay về
         </Button>
         <Button
-          disabled
           type="primary"
           htmlType="submit"
           className="bg-blue-500 text-white uppercase"

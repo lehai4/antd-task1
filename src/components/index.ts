@@ -1,5 +1,5 @@
 export { default as SideMenu } from "./SideMenu";
-export { default as Rectangle } from "./Rectangle";
+export { default as BoxContent } from "./BoxContent";
 export { default as Wrapper } from "./Wrapper";
 export { default as SelectForm } from "./Form/SelectForm";
 export { default as StepForm } from "./Form/StepForm";
@@ -7,3 +7,8 @@ export { default as InputSearch } from "./Form/InputSearch";
 export { default as AuthForm } from "./Authentication/AuthForm";
 export { default as Authentication } from "./Authentication/Authentication";
 export { default as SignIn } from "./Authentication/SignIn/SignIn";
+export { default as ColumnLineChart } from "./Chart/ColumnLineChart";
+export { default as AreaChart } from "./Chart/AreaChart";
+export { default as BarChart } from "./Chart/BarChart";
+export { default as ProjectDetails } from "./ProjectDetails";
+export { default as TodoList } from "./TodoList";

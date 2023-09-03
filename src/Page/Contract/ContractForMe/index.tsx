@@ -1,13 +1,14 @@
 import { LogoutOutlined } from "@ant-design/icons";
 import { Space, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
-import { useContext } from "react";
+import moment from "moment";
+import { useCallback, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { DefaultContext } from "../../../Context/ContextProvider";
 import { Wrapper } from "../../../components";
-import employee from "../../../dummyData/employee";
-import { LogOutUser } from "../../../redux/apiRequest";
+import contractArr from "../../../dummyData/dummy";
 import { useAppDispatch } from "../../../hooks/hooks";
-import { useNavigate } from "react-router-dom";
+import { LogOutUser } from "../../../redux/apiRequest";
 const { Text } = Typography;
 type ContractForMeProps = {
   title: string;
@@ -19,6 +20,12 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
   const handleLogOut = () => {
     LogOutUser(dispatch, navigate);
   };
+
+  const dataContractOfMe = useCallback(() => {
+    let obj = { ...contractArr };
+    return obj;
+  }, []);
+
   return (
     <Wrapper title={title}>
       <Header
@@ -76,13 +83,13 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <Text strong className="text-base">
                         Họ và tên:
                       </Text>
-                      {employee[0].nameEmployee}
+                      {dataContractOfMe()[0].employeeInfo.nameEmployee}
                     </div>
                     <div className="flex flex-1 items-center gap-12 text-base">
                       <Text strong className="text-base">
                         Giới tính:
                       </Text>
-                      {employee[0].sex}
+                      {dataContractOfMe()[0].employeeInfo.sex}
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between">
@@ -90,7 +97,9 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <Text strong className="text-base">
                         Sinh ngày:
                       </Text>
-                      <span>{employee[0].dateOfBirth}</span>
+                      <span>
+                        {dataContractOfMe()[0].employeeInfo.dateOfBirth}
+                      </span>
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between">
@@ -98,7 +107,7 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <Text strong className="text-base">
                         CCCD/CMND:
                       </Text>
-                      1232178281
+                      {dataContractOfMe()[0].employeeInfo.identify}
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between">
@@ -106,7 +115,9 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <Text strong className="text-base">
                         Địa chỉ:
                       </Text>
-                      <span className="ml-2">{employee[0].address}</span>
+                      <span className="ml-2">
+                        {dataContractOfMe()[0].employeeInfo.address}
+                      </span>
                     </div>
                   </div>
                   <div className="flex flex-row items-center justify-between">
@@ -114,7 +125,7 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <Text strong className="text-base">
                         Số điện thoại:
                       </Text>
-                      {employee[0].phone}
+                      {dataContractOfMe()[0].employeeInfo.phone}
                     </div>
                   </div>
                 </div>
@@ -132,20 +143,26 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <Text strong className="text-base">
                         Phòng ban công tác:
                       </Text>
-                      <span>Sales</span>
+                      <span>
+                        {dataContractOfMe()[0].employeeInfo.nameDepartment}
+                      </span>
                     </div>
                     <div className="flex flex-1 items-center gap-20 text-base">
                       <Text strong className="text-base">
                         Loại hợp đồng:
                       </Text>
-                      <span className="ml-2">Hợp đồng xác định thời hạn</span>
+                      <span className="ml-2">
+                        {dataContractOfMe()[0].nameContract}
+                      </span>
                     </div>
                     <div className="relative flex flex-row items-center">
                       <div className="flex flex-1 items-center gap-20 text-base">
                         <Text strong className="text-base">
                           Từ ngày:
                         </Text>
-                        <span style={{ marginLeft: "3.5rem" }}>01-01-2023</span>
+                        <span style={{ marginLeft: "3.5rem" }}>
+                          {moment(dataContractOfMe()[0].dayStart).format("l")}
+                        </span>
                       </div>
                       <span className="absolute" style={{ left: "37%" }}>
                         -
@@ -154,7 +171,9 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                         <Text strong className="text-base">
                           Đến ngày:
                         </Text>
-                        <span className="ml-2">01-01-2023</span>
+                        <span className="ml-2">
+                          {moment(dataContractOfMe()[0].dayEnd).format("l")}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -169,7 +188,9 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                           Lương căn bản:
                         </Text>
                         <span className="ml-1.5">
-                          {new Intl.NumberFormat("en-DE").format(9000000)}
+                          {new Intl.NumberFormat("en-DE").format(
+                            dataContractOfMe()[0].salaryAgree
+                          )}
                         </span>
                       </div>
                       <div className="flex flex-1 items-center text-base">
@@ -177,7 +198,9 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                           Lương tính thuế:
                         </Text>
                         <span className="ml-10">
-                          {new Intl.NumberFormat("en-DE").format(8000000)}
+                          {new Intl.NumberFormat("en-DE").format(
+                            dataContractOfMe()[0].salaryTax
+                          )}
                         </span>
                       </div>
                     </div>
@@ -197,15 +220,21 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <div className="ml-6 mt-2 flex flex-col gap-y-3">
                         <div className="flex flex-1 items-center gap-16 text-base">
                           <Text className="text-base">Số TK ngân hàng:</Text>
-                          <span className="ml-4">Chuyển khoản</span>
+                          <span className="ml-4">
+                            {dataContractOfMe()[0].employeeInfo.stk}
+                          </span>
                         </div>
                         <div className="flex flex-1 items-center gap-24 text-base">
                           <Text className="text-base">Chủ tài khoản:</Text>
-                          <span className="ml-2">LeChiHai</span>
+                          <span className="ml-2">
+                            {dataContractOfMe()[0].employeeInfo.nameEmployee}
+                          </span>
                         </div>
                         <div className="flex flex-1 items-center gap-28 text-base">
                           <Text className="text-base">Ngân hàng:</Text>
-                          <span className="ml-2.5">ACB</span>
+                          <span className="ml-2.5">
+                            {dataContractOfMe()[0].employeeInfo.bank}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -225,13 +254,21 @@ const ContractForMe = ({ title }: ContractForMeProps) => {
                       <Text strong className="text-base">
                         Số người phụ thuộc
                       </Text>
-                      <span className="ml-10">1</span>
+                      <span className="ml-10">
+                        {dataContractOfMe()[0].dependentPerson}
+                      </span>
                     </div>
                     <div className="flex flex-1 items-center gap-48 text-base">
                       <Text strong className="text-base">
                         Ghi chú:
                       </Text>
-                      <span className="ml-3">abc</span>
+                      {dataContractOfMe()[0].note ? (
+                        <span className="ml-3">
+                          {dataContractOfMe()[0].note}
+                        </span>
+                      ) : (
+                        <span className="ml-3">Chưa có ghi chú mới</span>
+                      )}
                     </div>
                   </div>
                 </div>

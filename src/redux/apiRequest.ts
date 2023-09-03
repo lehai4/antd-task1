@@ -10,6 +10,3 @@ export const LogOutUser = async (dispatch: any, navigate: any) => {
   dispatch(logOutSuccess());
   navigate("/auth");
 };
-
-// https://queuing-api.vercel.app
-// http://localhost:3001

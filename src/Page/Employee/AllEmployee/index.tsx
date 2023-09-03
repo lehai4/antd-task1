@@ -10,7 +10,7 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import HorizontalSplitIcon from "@mui/icons-material/HorizontalSplit";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
 import { SvgIcon } from "@mui/material";
-import { Button, Space, Table, Typography } from "antd";
+import { Badge, Button, Space, Table, Typography } from "antd";
 import { Content, Header } from "antd/es/layout/layout";
 import { ColumnsType } from "antd/es/table/interface";
 import { useContext, useEffect, useState } from "react";
@@ -31,15 +31,8 @@ const gridNameEmployeeDot = (text: string, record: any) => {
   return (
     <>
       <div className="w-max flex flex-row items-center gap-2">
-        <div
-          style={{
-            backgroundColor: record.color,
-            minWidth: "8px",
-            height: "8px",
-            borderRadius: "50%",
-          }}
-        ></div>
-        <Text underline>{text}</Text>
+        <Badge color={record.color} />
+        <Text>{text}</Text>
       </div>
     </>
   );

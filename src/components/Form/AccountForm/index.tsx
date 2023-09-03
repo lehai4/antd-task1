@@ -38,7 +38,7 @@ const AccountForm = ({ onFinish }: AccountFormProps) => {
           },
         ]}
       >
-        <Input size="large" placeholder="Nhập mật khẩu" />
+        <Input.Password size="large" placeholder="Nhập mật khẩu" />
       </Form.Item>
       <Form.Item
         label="Xác nhận mật khẩu"
@@ -57,7 +57,7 @@ const AccountForm = ({ onFinish }: AccountFormProps) => {
           }),
         ]}
       >
-        <Input size="large" placeholder="Nhập lại mật khẩu" />
+        <Input.Password size="large" placeholder="Nhập lại mật khẩu" />
       </Form.Item>
       <Form.Item>
         <div className="flex flex-row items-center justify-between">

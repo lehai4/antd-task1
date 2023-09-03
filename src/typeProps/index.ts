@@ -55,10 +55,44 @@ export interface EmployeeType {
   stk: string;
   key: React.ReactNode;
 }
-export interface ContractForEmployeeType {
+
+type EmployeeProps = {
+  id: number;
+  active: boolean;
+  img: string;
+  nameEmployee: string;
+  nameDepartment: string;
+  phone: string;
+  sex: string;
+  identify: number;
+  email: string;
+  bank: string;
+  dateOfBirth: string;
+  address: string;
+  country: string;
+  stk: string;
+};
+interface Team {
+  avatar: string;
+}
+export interface TODO {
+  value: string;
+  id: any;
+}
+export interface ProjectType {
+  nameProject: string;
+  team: Team[];
+  priority: number;
+  status: boolean;
+  amount: number;
+  key: React.ReactNode;
+}
+
+export interface ContractType {
   id: number;
   image: string;
   colorTypeDotContract: string;
+  employeeInfo: EmployeeProps;
   nameCreate: string;
   nameContract: string;
   status: boolean;
